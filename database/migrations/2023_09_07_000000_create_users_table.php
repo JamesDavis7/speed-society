@@ -16,9 +16,9 @@ return new class extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('profile_picture_url')->nullable();
-            $table->string('car');
-            $table->text('bio');
-            $table->string('location');
+            $table->string('car')->nullable();
+            $table->text('bio')->nullable();
+            $table->string('location')->nullable();
             $table->integer('meets_organised')->default(0);
             $table->integer('rating')->default(0);
             $table->timestamp('email_verified_at')->nullable();
