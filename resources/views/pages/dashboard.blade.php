@@ -4,4 +4,6 @@
 
 @section('content')
 
+@livewire('meetup-directory')
+
 @endsection
