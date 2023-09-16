@@ -6,6 +6,7 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <title>Speed Society - @yield('page_title')</title>
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+        @livewireStyles
     </head>
     <body class="bg-gray-200">
         <header>
@@ -14,5 +15,9 @@
         <div class="container py-12 mx-auto">
             @yield('content')
         </div>
+
+        @livewireScripts
     </body>
 </html>
+
+

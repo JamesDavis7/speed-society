@@ -8,7 +8,7 @@
 ])
 
 <a href="{{ route('meetup.view', $id) }}">
-    <div class="relative p-4 overflow-hidden bg-white border border-2 border-black rounded">
+    <div class="relative p-4 overflow-hidden bg-white border border-black rounded">
         <div class="flex flex-col gap-4 md:flex-row">
             @if($image)
                 <img src="{{ $image }}" alt="" class="w-full max-w-[12.5rem] h-full rounded">
@@ -24,7 +24,6 @@
     
         <div class="absolute top-4 right-4">
             <div><i class="ri-arrow-up-line"></i>
-    
             </div>
         </div>
     </div>
