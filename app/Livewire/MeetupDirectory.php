@@ -16,6 +16,8 @@ class MeetupDirectory extends Component
     public $time;
     public $category = "";
     public $organiser = "";    
+    public $latest;
+    public $earliest;
 
     public $organisers;
     public $categories;
@@ -52,6 +54,15 @@ class MeetupDirectory extends Component
 
         if ($this->category) {
             $query->where('category', $this->category);
+        }
+
+        if($this->time) {
+            if($this->time == 'earliest'){
+                $query->orderBy('time', 'asc')->get();
+            } else{
+                $query->orderBy('time', 'desc')->get();
+            }
+
         }
 
         return $query->paginate(5);

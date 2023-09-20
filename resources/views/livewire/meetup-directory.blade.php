@@ -9,15 +9,15 @@
         <div>
             <label for="time">Time</label>
             <select class="w-full" name="time" wire:model.live="time">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
+                <option value="" hidden>Select</option>
+                <option value="latest" wire:model="latest">Latest First</option>
+                <option value="earliest" wire:model="earliest">Earliest First</option>
             </select>
         </div>
         <div>
             <label for="category">Category</label>
             <select class="w-full" name="category" wire:model.live="category">
+                <option value="" hidden>Select</option>
                 @foreach($categories as $category)
                     <option value="{{ $category }}">{{ ucfirst(strtolower($category)) }}</option>
                 @endforeach
