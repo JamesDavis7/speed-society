@@ -35,6 +35,7 @@
     </div>
     @forelse($meetups as $meetup)
         <x-directory-card 
+            href="{{ route('meetups.single', $meetup->id) }}"
             id="{{ $meetup->id }}"
             title="{{ $meetup->title }}" 
             description="{{ $meetup->description }}"
@@ -42,7 +43,7 @@
         >
         <div class="p-4">
             <p><span class="font-semibold">Date:</span> {{ formatDateTime($meetup->time) }}</p>
-            <p><span class="font-semibold">Category:</span> {{ ucfirst(strtolower($meetup->category)) }}</p>
+            <p><span class="font-semibold">Category:</span> {{ $meetup->category }}</p>
             <p><span class="font-semibold">Meetup Organiser:</span> {{ $meetup->user->name }}</p>
         </div>
         </x-directory-card>

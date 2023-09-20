@@ -22,7 +22,6 @@ class GroupFactory extends Factory
             'name' => $this->faker->word,
             'description' => $this->faker->paragraph,
             'privacy' => $this->faker->randomElement(['PUBLIC', 'PRIVATE', 'HIDDEN']),
-            'member_count' => $this->faker->numberBetween(0, 100),
         ];
     }
 }

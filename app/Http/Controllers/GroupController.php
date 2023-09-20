@@ -5,13 +5,13 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
-class DashboardController extends Controller
+class GroupController extends Controller
 {
     /**
-     * Display the dashboard index view.
+     * Display the groups index view.
      */
     public function index(): View
     {
-        return view('pages.dashboard');
+        return view('pages.groups.index');
     }
 }

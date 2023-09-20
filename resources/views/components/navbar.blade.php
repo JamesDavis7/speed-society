@@ -3,8 +3,10 @@
         <a href="{{ route('pages.dashboard') }}">
             <span>{{ __('Speed Society') }}</span>
         </a>
-        <div class="flex gap-4">
-            <a href="{{ route('profile.edit') }}">{{ __('Profile') }}</a>
+        <div class="flex gap-6">
+            <a href="{{ route('meetups.index') }}">Meetups</a>
+            <a href="{{ route('groups.index') }}">Groups</a>
+            <a href="{{ route('profile.edit') }}">Profile</a>
         </div>
     </nav>
 </div>

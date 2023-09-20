@@ -9,13 +9,21 @@ use App\Models\Meetup;
 class MeetupController extends Controller
 {
     /**
-     * Display the dashboard.
+     * Display the meetups index view.
      */
-    public function index($id): View
+    public function index(): View
+    {
+        return view('pages.meetups.index');
+    }
+
+    /**
+     * Display a single meetup.
+     */
+    public function single($id): View
     {
         $meetup = Meetup::with('user')->where('id', $id)->firstOrFail();
 
-        return view('pages.meetup-directory.single', [
+        return view('pages.meetups.single', [
             'meetup' => $meetup
         ]);
     }

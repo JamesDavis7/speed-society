@@ -4,7 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MeetupController;
-
+use App\Http\Controllers\GroupController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,10 +22,15 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['au
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');    
 
-    Route::get('/meetup/{id}', [MeetupController::class, 'index'])->name('meetup.view');
+    Route::get('/meetups', [MeetupController::class, 'index'])->name('meetups.index');
+    Route::get('/meetups/{id}', [MeetupController::class, 'single'])->name('meetups.single');
+    
+    Route::get('/groups', [GroupController::class, 'index'])->name('groups.index');
 });
+
+
 
 
 require __DIR__.'/auth.php';

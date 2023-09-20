@@ -16,7 +16,6 @@ return new class extends Migration
             $table->string('name');
             $table->text('description')->nullable();
             $table->enum('privacy', ['PUBLIC', 'PRIVATE', 'HIDDEN'])->default('public');
-            $table->unsignedInteger('member_count')->default(0);
             $table->timestamps();
         });
         
