@@ -1,1 +1,2 @@
-A concept web application for organizing and discovering car meetups and events in your area.
+# Practice Project 1
+just a practice project to help with personal dev skills
