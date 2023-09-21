@@ -23,6 +23,7 @@ class MeetupFactory extends Factory
         return [
             'title' => $this->faker->sentence,
             'description' => $this->faker->paragraph,
+            'location' => $this->faker->city,
             'time' => $this->faker->dateTimeBetween('now', '+1 year'),
             'thumbnail' => $this->faker->imageUrl(),
             'category' => $this->faker->randomElement(['STATIC', 'CRUISE', 'CLUB']), #

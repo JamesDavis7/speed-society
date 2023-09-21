@@ -15,16 +15,4 @@ class MeetupController extends Controller
     {
         return view('pages.meetups.index');
     }
-
-    /**
-     * Display a single meetup.
-     */
-    public function single($id): View
-    {
-        $meetup = Meetup::with('user')->where('id', $id)->firstOrFail();
-
-        return view('pages.meetups.single', [
-            'meetup' => $meetup
-        ]);
-    }
 }

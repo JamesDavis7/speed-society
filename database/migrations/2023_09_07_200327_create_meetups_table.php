@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->text('title');
             $table->text('description');
+            $table->string('location')->nullable();
             $table->dateTime('time');
             $table->string('thumbnail');
             $table->enum('category', ['STATIC', 'CRUISE', 'CLUB']);

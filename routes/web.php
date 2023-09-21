@@ -25,7 +25,6 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');    
 
     Route::get('/meetups', [MeetupController::class, 'index'])->name('meetups.index');
-    Route::get('/meetups/{id}', [MeetupController::class, 'single'])->name('meetups.single');
     
     Route::get('/groups', [GroupController::class, 'index'])->name('groups.index');
 });

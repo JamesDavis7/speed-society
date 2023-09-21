@@ -4,6 +4,6 @@
 
 @section('content')
 
-<div>group page</div>
+@livewire('group-directory')
 
 @endsection

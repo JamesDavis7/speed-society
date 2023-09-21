@@ -26,7 +26,6 @@ class UserFactory extends Factory
             'profile_picture_url' => $this->faker->imageUrl,
             'car' => $this->faker->word,
             'bio' => $this->faker->text,
-            'location' => $this->faker->city,
             'meets_organised' => $this->faker->numberBetween(0, 100),
             'rating' => $this->faker->numberBetween(0, 5),
             'email_verified_at' => now(),

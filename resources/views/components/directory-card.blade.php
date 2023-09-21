@@ -8,8 +8,10 @@
     'href' => null
 ])
 
+@if( $href )
 <a href="{{ $href }}">
-    <div class="relative p-4 overflow-hidden bg-white border border-black rounded">
+@endif
+    <div  {{ $attributes->merge(['class' => 'relative h-full p-4 overflow-hidden bg-white border border-black rounded']) }}>
         <div class="flex flex-col gap-4 md:flex-row">
             @if($image)
                 <img src="{{ $image }}" alt="directory-card-image" class="w-full max-w-[12.5rem] h-full rounded">
@@ -28,4 +30,6 @@
             </div>
         </div>
     </div>
+@if( $href )
 </a>
+@endif
