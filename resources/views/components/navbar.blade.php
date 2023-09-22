@@ -4,9 +4,9 @@
             <span>{{ __('Speed Society') }}</span>
         </a>
         <div class="flex gap-6">
-            <a href="{{ route('meetups.index') }}">Meetups</a>
-            <a href="{{ route('groups.index') }}">Groups</a>
-            <a href="{{ route('profile.edit') }}">Profile</a>
+            <a href="{{ route('meetups.index') }}" wire:navigate>Meetups</a>
+            <a href="{{ route('groups.index') }}" wire:navigate>Groups</a>
+            <a href="{{ route('profile.edit') }}" wire:navigate>Profile</a>
         </div>
     </nav>
 </div>

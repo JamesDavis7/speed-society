@@ -27,7 +27,7 @@ switch ($variant) {
 @endphp
 
 @if( $href )
-<a href="{{ $href }}">
+<a href="{{ $href }}" wire:navigate>
 @endif
     <button type="{{ $type }}" {{ $attributes->merge(['class' => $classes]) }}>
         {{ $slot }}
