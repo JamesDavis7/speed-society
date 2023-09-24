@@ -20,12 +20,10 @@ use App\Http\Controllers\GroupController;
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('pages.dashboard');
 
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');    
-
     Route::get('/meetups', [MeetupController::class, 'index'])->name('meetups.index');
-    
+    Route::get('/meetups/create', [MeetupController::class, 'create'])->name('meetups.create');
+    Route::post('/meetups/create', [MeetupController::class, 'store'])->name('meetups.store');
+
     Route::get('/groups', [GroupController::class, 'index'])->name('groups.index');
 });
 

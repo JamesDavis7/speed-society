@@ -4,7 +4,7 @@
         <x-button href="{{ route('pages.dashboard')}}">
             Go Back
         </x-button>
-        <x-button variant="outline" href="{{ route('pages.dashboard')}}">
+        <x-button variant="outline" href="{{ route('meetups.create')}}">
             Create A Meetup
         </x-button>
     </div>
@@ -25,8 +25,8 @@
                 <label for="time">Time</label>
                 <select class="w-full" name="time" wire:model.live="time">
                     <option value="" hidden>Select</option>
-                    <option value="latest" wire:model="latest">Latest First</option>
                     <option value="earliest" wire:model="earliest">Earliest First</option>
+                    <option value="latest" wire:model="latest">Latest First</option>
                 </select>
             </div>
             <div>
@@ -34,7 +34,7 @@
                 <select class="w-full" name="category" wire:model.live="category">
                     <option value="" hidden>Select</option>
                     @foreach($categories as $category)
-                        <option value="{{ $category }}">{{ ucfirst(strtolower($category)) }}</option>
+                        <option value="{{ strtoupper($category) }}">{{ $category}}</option>
                     @endforeach
                 </select>
             </div>
@@ -57,10 +57,9 @@
             >
             <div class="p-4">
                 <p><span class="font-semibold">Date:</span> {{ formatDateTime($meetup->time) }}</p>
-                <p><span class="font-semibold">Category:</span> {{ $meetup->category }}</p>
                 <p><span class="font-semibold">Meetup Organiser:</span> {{ $meetup->user->name }}</p>
                 <p><span class="font-semibold">Location:</span> {{ $meetup->location }}</p>
-    
+                <p><span class="font-semibold">Category:</span> {{ ucfirst(strtolower($meetup->category)) }}</p>
             </div>
             </x-directory-card>
     

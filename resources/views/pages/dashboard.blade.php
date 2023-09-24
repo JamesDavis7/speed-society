@@ -11,7 +11,6 @@
 <div class="flex gap-2 mt-10">
     <x-button href="{{ route('meetups.index')}}">View meetups</x-button>
     <x-button href="{{ route('groups.index')}}">View Groups</x-button>
-    <x-button href="{{ route('profile.edit')}}">Your Profile</x-button>
 </div>
 
 @endsection

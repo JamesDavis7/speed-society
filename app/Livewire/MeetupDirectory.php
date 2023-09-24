@@ -2,11 +2,11 @@
 
 namespace App\Livewire;
 
+use App\Enums\MeetupCategoryEnum;
 use Livewire\Component;
 use Livewire\WithPagination;
 use App\Models\Meetup;
 use App\Models\User;
-
 
 class MeetupDirectory extends Component
 {
@@ -40,9 +40,10 @@ class MeetupDirectory extends Component
     private function handleMeetups()
     {
         $query = Meetup::query();
+        $this->categories = MeetupCategoryEnum::getCategories();
+        
 
         $this->organisers = User::pluck('name', 'id');
-        $this->categories = Meetup::distinct('category')->pluck('category');
 
         if($this->search){
             $query->where('title', 'LIKE', '%'.$this->search.'%');
