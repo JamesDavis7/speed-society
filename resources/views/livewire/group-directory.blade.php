@@ -7,6 +7,7 @@
         <div class="flex items-center gap-2">
             <div>
                 <select name="groups" wire:model.live="privacy">
+                    <option value="" hidden>Select</option>
                     <option value="all" wire:model="all">All Groups</option>
                     <option value="public" wire:model="public">Public Only</option>
                     <option value="private" wire:model="private">Private Only</option>
@@ -23,7 +24,7 @@
         <h1 class="mb-10 text-5xl font-light">Groups</h1>
     </div>
     
-    <div class="grid items-start grid-cols-4 gap-8 mb-5 mb-10">
+    <div class="grid items-start grid-cols-4 gap-8 mb-10">
         @foreach($groups as $group)
         <div class="flex flex-col h-full">
             <x-directory-card class="rounded-b-none" title="{{ $group->name }}" description="{{ $group->description }}">

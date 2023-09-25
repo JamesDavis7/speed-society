@@ -8,6 +8,7 @@
     <h1 class="text-5xl font-light">Create a Meetup</h1>
     <p class="mt-2">Create a meetup using the form below.</p>
 </div>
+{{-- {{ dd($categories)}} --}}
 
 
 <form method="POST" action="{{ route('meetups.store')}}">
@@ -27,8 +28,9 @@
         </div>
         <div>
             <select type="text" placeholder="category" name="category" class="w-full">
+                <option value="" hidden>Select</option>
                 @foreach($categories as $category)
-                    <option value="{{ strtoupper($category) }}">{{ $category }}</option>
+                    <option value="{{ $category->name }}">{{ $category->value }}</option>
                 @endforeach
             </select>
             @error('category')<p class="text-red-500">{{ $message }}</p>@enderror

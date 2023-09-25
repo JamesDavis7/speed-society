@@ -40,7 +40,7 @@ class MeetupDirectory extends Component
     private function handleMeetups()
     {
         $query = Meetup::query();
-        $this->categories = MeetupCategoryEnum::getCategories();
+        $this->categories = MeetupCategoryEnum::cases();
         
 
         $this->organisers = User::pluck('name', 'id');

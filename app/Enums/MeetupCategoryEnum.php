@@ -1,17 +1,9 @@
 <?php 
 
-namespace app\Enums;
+namespace App\Enums;
 
-class MeetupCategoryEnum {
-    const STATIC = 'Static';
-    const CRUISE = 'Cruise';
-    const CLUB = 'Club';
-
-    public static function getCategories(): array {
-        return [
-            self::STATIC,
-            self::CRUISE,
-            self::CLUB,
-        ];
-    }
+enum MeetupCategoryEnum: string{
+    case STATIC = 'Static';
+    case CRUISE = 'Cruise';
+    case CLUB = 'Club';
 }

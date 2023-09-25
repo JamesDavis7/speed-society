@@ -23,7 +23,7 @@ class MeetupController extends Controller
      */
     public function create()
     {
-        $categories = MeetupCategoryEnum::getCategories();
+        $categories = MeetupCategoryEnum::cases();
 
         return view('pages.meetups.create', compact('categories'));
     }
@@ -36,7 +36,7 @@ class MeetupController extends Controller
         $validatedData = $request->validated();
     
         $validatedData['organiser_id'] = Auth::id();
-    
+
         Meetup::create($validatedData);
 
         return redirect()->route('meetups.index');

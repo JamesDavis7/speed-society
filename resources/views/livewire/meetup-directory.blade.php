@@ -34,7 +34,7 @@
                 <select class="w-full" name="category" wire:model.live="category">
                     <option value="" hidden>Select</option>
                     @foreach($categories as $category)
-                        <option value="{{ strtoupper($category) }}">{{ $category}}</option>
+                        <option value="{{ $category->value }}">{{ $category}}</option>
                     @endforeach
                 </select>
             </div>
@@ -59,7 +59,7 @@
                 <p><span class="font-semibold">Date:</span> {{ formatDateTime($meetup->time) }}</p>
                 <p><span class="font-semibold">Meetup Organiser:</span> {{ $meetup->user->name }}</p>
                 <p><span class="font-semibold">Location:</span> {{ $meetup->location }}</p>
-                <p><span class="font-semibold">Category:</span> {{ ucfirst(strtolower($meetup->category)) }}</p>
+                <p><span class="font-semibold">Category:</span> {{ strtolower(ucfirst($meetup->category)) }}</p>
             </div>
             </x-directory-card>
     
