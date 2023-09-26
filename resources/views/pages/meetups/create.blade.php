@@ -8,8 +8,6 @@
     <h1 class="text-5xl font-light">Create a Meetup</h1>
     <p class="mt-2">Create a meetup using the form below.</p>
 </div>
-{{-- {{ dd($categories)}} --}}
-
 
 <form method="POST" action="{{ route('meetups.store')}}">
     @csrf

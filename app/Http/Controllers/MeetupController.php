@@ -24,7 +24,6 @@ class MeetupController extends Controller
     public function create()
     {
         $categories = MeetupCategoryEnum::cases();
-
         return view('pages.meetups.create', compact('categories'));
     }
 
