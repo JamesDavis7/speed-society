@@ -1,4 +1,3 @@
-
 <div>
     <div class="flex justify-between pb-10">
         <x-button href="{{ route('pages.dashboard')}}">
@@ -16,8 +15,7 @@
             <x-button href="{{ route('pages.dashboard')}}">
                 Create A Group
             </x-button>   
-        </div>
-             
+        </div>     
     </div>
     
     <div>

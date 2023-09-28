@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('location')->nullable();
             $table->dateTime('time');
             $table->string('thumbnail')->nullable();
-            $table->enum('category', ['STATIC', 'CRUISE', 'CLUB']);
+            $table->enum('category', ['static', 'cruise', 'club']);
             $table->unsignedBigInteger('organiser_id');
             $table->foreign('organiser_id')->references('id')->on('users');
             $table->timestamps();

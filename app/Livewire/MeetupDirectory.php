@@ -7,11 +7,13 @@ use Livewire\Component;
 use Livewire\WithPagination;
 use App\Models\Meetup;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class MeetupDirectory extends Component
 {
     use WithPagination;
 
+    public $user;
     public $search = "";
     public $time;
     public $category = "";
@@ -21,6 +23,14 @@ class MeetupDirectory extends Component
 
     public $organisers;
     public $categories;
+
+    /**
+     * Runs when the component is first mounted
+     */
+    public function mount()
+    {
+        $this->user = Auth::user();   
+    }
 
     /**
      * Render the component.
@@ -41,8 +51,6 @@ class MeetupDirectory extends Component
     {
         $query = Meetup::query();
         $this->categories = MeetupCategoryEnum::cases();
-        
-
         $this->organisers = User::pluck('name', 'id');
 
         if($this->search){

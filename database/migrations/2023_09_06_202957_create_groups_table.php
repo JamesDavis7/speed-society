@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->text('description')->nullable();
-            $table->enum('privacy', ['PUBLIC', 'PRIVATE', 'HIDDEN'])->default('public');
+            $table->enum('privacy', ['public', 'private', 'hidden'])->default('public');
             $table->timestamps();
         });
         

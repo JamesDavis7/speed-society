@@ -34,7 +34,7 @@
                 <select class="w-full" name="category" wire:model.live="category">
                     <option value="" hidden>Select</option>
                     @foreach($categories as $category)
-                        <option value="{{ $category->value }}">{{ $category}}</option>
+                        <option value="{{ $category->value }}">{{ trans('enums.meetup_category.' . $category->value)}}</option>
                     @endforeach
                 </select>
             </div>
@@ -43,7 +43,7 @@
                 <select class="w-full" name="organiser" wire:model.live="organiser">
                     <option value="" hidden>Select</option>
                     @foreach($organisers as $id => $name)
-                        <option value="{{ $id }}">{{ $name }}</option>
+                        <option value="{{ $id }}">{{ $user->name == $name ?  'Me' : $name }}</option>
                     @endforeach
                 </select>
             </div>
@@ -51,7 +51,7 @@
         @forelse($meetups as $meetup)
             <x-directory-card 
                 id="{{ $meetup->id }}"
-                title="{{ $meetup->title }}" 
+                title="{{ $meetup->title }}"
                 description="{{ $meetup->description }}"
                 image="{{ $meetup->thumbnail }}"
             >
@@ -59,8 +59,13 @@
                 <p><span class="font-semibold">Date:</span> {{ formatDateTime($meetup->time) }}</p>
                 <p><span class="font-semibold">Meetup Organiser:</span> {{ $meetup->user->name }}</p>
                 <p><span class="font-semibold">Location:</span> {{ $meetup->location }}</p>
-                <p><span class="font-semibold">Category:</span> {{ strtolower(ucfirst($meetup->category)) }}</p>
+                <p><span class="font-semibold">Category:</span> {{  trans('enums.meetup_category.' . $category->value)}}</p>
             </div>
+            @if( $user->id === $meetup->organiser_id)
+                <x-slot:action>
+                    <x-button href="{{ route('meetups.edit', ['id' => $meetup->id] ) }}">Manage Meetup</x-button>
+                </x-slot:action>
+            @endif
             </x-directory-card>
     
             @empty
