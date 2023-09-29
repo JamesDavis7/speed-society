@@ -3,8 +3,9 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rules\Enum;
 
-class CreateMeetupRequest extends FormRequest
+class EditMeetupRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,7 +26,7 @@ class CreateMeetupRequest extends FormRequest
             'title' => 'required|unique:meetups',
             'description' => 'required|max:500',
             'location' => 'required',
-            'time' => 'required', 
+            'time' => 'required',
             'thumbnail' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
             'category' => ['required', 'in:meetups,static,cruise,club'],
         ];

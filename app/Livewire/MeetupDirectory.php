@@ -20,15 +20,18 @@ class MeetupDirectory extends Component
     public $organiser = "";    
     public $latest;
     public $earliest;
+    public $mineOnly;
 
     public $organisers;
     public $categories;
+
 
     /**
      * Runs when the component is first mounted
      */
     public function mount()
     {
+        $this->mineOnly = false;
         $this->user = Auth::user();   
     }
 
@@ -49,7 +52,12 @@ class MeetupDirectory extends Component
      */
     private function handleMeetups()
     {
-        $query = Meetup::query();
+        if(!$this->mineOnly){
+            $query = Meetup::query();
+        } else{
+            $query = Meetup::where('organiser_id', $this->user->id);
+        }
+
         $this->categories = MeetupCategoryEnum::cases();
         $this->organisers = User::pluck('name', 'id');
 

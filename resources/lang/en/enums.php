@@ -1,8 +1,5 @@
 <?php
 
-use App\Enums\MeetupCategoryEnum;
-use App\Enums\GroupEnum;
-
 return [
     'meetup_category' => [
         'static' => 'Static',

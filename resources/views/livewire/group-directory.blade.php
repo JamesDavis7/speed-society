@@ -1,6 +1,6 @@
 <div>
     <div class="flex justify-between pb-10">
-        <x-button href="{{ route('pages.dashboard')}}">
+        <x-button href="{{ route('meetups.index')}}">
             Go Back
         </x-button>
         <div class="flex items-center gap-2">
@@ -12,7 +12,7 @@
                     <option value="private" wire:model="private">Private Only</option>
                 </select>
             </div>
-            <x-button href="{{ route('pages.dashboard')}}">
+            <x-button>
                 Create A Group
             </x-button>   
         </div>     
