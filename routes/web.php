@@ -18,6 +18,10 @@ use App\Http\Controllers\GroupController;
 
 Route::middleware('auth')->group(function () {
 
+    Route::get('/', function () {
+        return redirect('/meetups');
+    });
+
     Route::prefix('/meetups')->group(function () {
         Route::get('/', [MeetupController::class, 'index'])->name('meetups.index');
         Route::get('/create', [MeetupController::class, 'create'])->name('meetups.create');
@@ -27,7 +31,10 @@ Route::middleware('auth')->group(function () {
         Route::delete('/{id}', [MeetupController::class, 'destroy'])->name('meetups.destroy');
     });
 
-    Route::get('/groups', [GroupController::class, 'index'])->name('groups.index');
+    Route::prefix('/groups')->group(function() {
+        Route::get('/', [GroupController::class, 'index'])->name('groups.index');
+    });
+
 });
 
 

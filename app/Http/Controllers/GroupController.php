@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\View\View;
+use App\Models\Group;
 
 class GroupController extends Controller
 {
@@ -14,4 +15,5 @@ class GroupController extends Controller
     {
         return view('pages.groups.index');
     }
+
 }

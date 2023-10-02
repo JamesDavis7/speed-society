@@ -12,7 +12,7 @@
                     <option value="private" wire:model="private">Private Only</option>
                 </select>
             </div>
-            <x-button>
+            <x-button href="{{ route('groups.create') }}">
                 Create A Group
             </x-button>   
         </div>     

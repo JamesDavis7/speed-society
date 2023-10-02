@@ -33,7 +33,6 @@ class MeetupController extends Controller
 
     /**
      * Stores the user input.
-     * 
      */
     public function store(CreateMeetupRequest $request)
     {

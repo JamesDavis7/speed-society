@@ -23,7 +23,7 @@ class EditMeetupRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => 'required|unique:meetups',
+            'title' => 'required',
             'description' => 'required|max:500',
             'location' => 'required',
             'time' => 'required',
