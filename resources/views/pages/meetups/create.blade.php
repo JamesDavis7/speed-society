@@ -9,7 +9,7 @@
         @csrf
         <div class="flex flex-col justify-between gap-4 mx-auto mt-10">
             <div class="grid grid-cols-3">
-                <x-button href="{{ route('meetups.index') }}">Back</x-button>
+                <x-button href="{{ route('meetups.my-meetups') }}">Back</x-button>
                 <div class="flex flex-col justify-center flex-1 mx-auto text-center">
                     <h1 class="text-5xl font-light">Create a Meetup</h1>
                     <p class="mt-2">Create a meetup using the form below.</p>

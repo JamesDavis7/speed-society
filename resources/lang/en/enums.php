@@ -11,5 +11,10 @@ return [
         'private' => 'Private',
         'public' => 'Public',
         'hidden' => 'Hidden' 
+    ],
+
+    'user_group_role' => [
+        'admin' => 'Admin',
+        'member' => 'Member'
     ]
 ];

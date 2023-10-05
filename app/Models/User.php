@@ -43,12 +43,16 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-
     /**
      * Get the users attached meetups.
      */
     public function meetups(): HasMany
     {
         return $this->hasMany(Meetup::class, 'organiser_id');
+    }
+
+    public function groups()
+    {
+        return $this->belongsToMany(Group::class, 'user_groups', 'user_id', 'group_id')->withPivot('role');
     }
 }

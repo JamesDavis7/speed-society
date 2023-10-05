@@ -29,10 +29,13 @@ Route::middleware('auth')->group(function () {
         Route::get('/edit/{id}', [MeetupController::class, 'edit'])->name('meetups.edit');
         Route::put('/update/{id}', [MeetupController::class, 'update'])->name('meetups.update');
         Route::delete('/{id}', [MeetupController::class, 'destroy'])->name('meetups.destroy');
+        Route::get('/my-meetups', [MeetupController::class, 'myMeetups'])->name('meetups.my-meetups');
+
     });
 
     Route::prefix('/groups')->group(function() {
         Route::get('/', [GroupController::class, 'index'])->name('groups.index');
+        Route::get('/my-groups', [GroupController::class, 'myGroups'])->name('groups.my-groups');
     });
 
 });

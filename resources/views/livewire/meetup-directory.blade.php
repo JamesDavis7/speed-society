@@ -1,14 +1,11 @@
 
 <div>
     <div class="flex justify-between pb-10">
-        <x-button variant="outline" href="{{ route('meetups.create')}}">
-            Create A Meetup
+        <x-button variant="outline" href="{{ route('meetups.my-meetups')}}">
+            My Meetups
         </x-button>
-        <div>
-            <label for="my meetups only" class="mr-2">My Meetups Only</label>
-            <input type="checkbox" name="my meetups only" wire:model.live="mineOnly">
-        </div>
     </div>
+
     <h1 class="mb-10 text-5xl font-light">Meetups</h1>
     <div class="flex flex-col gap-4">
         <div class="grid items-end grid-cols-5 gap-2">
@@ -35,17 +32,15 @@
                     @endforeach
                 </select>
             </div>
-            @if(!$mineOnly)
                 <div>
                     <label for="organiser">Organiser</label>
                     <select class="w-full" name="organiser" wire:model.live="organiser">
                         <option value="" hidden>Select</option>
                         @foreach($organisers as $id => $name)
-                            <option value="{{ $id }}">{{ $user->name == $name ?  'Me' : $name }}</option>
+                            <option value="{{ $id }}">{{ $name }}</option>
                         @endforeach
                     </select>
                 </div>
-            @endif
         </div>
         @forelse($meetups as $meetup)
             <x-directory-card 
@@ -60,11 +55,6 @@
                 <p><span class="font-semibold">Location:</span> {{ $meetup->location }}</p>
                 <p><span class="font-semibold">Category:</span> {{  trans('enums.meetup_category.' . $meetup->category)}}</p>
             </div>
-            @if( $user->id === $meetup->organiser_id)
-                <x-slot:action>
-                    <x-button href="{{ route('meetups.edit', ['id' => $meetup->id] ) }}">Manage Meetup</x-button>
-                </x-slot:action>
-            @endif
             </x-directory-card>
     
             @empty

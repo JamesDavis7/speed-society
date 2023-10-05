@@ -19,6 +19,15 @@ class MeetupController extends Controller
     {
         return view('pages.meetups.index');
     }
+    
+    /**
+     * Display the users personal created meetups.
+     */
+    public function myMeetups(): View
+    {
+        $userMeetups = auth()->user()->meetups;
+        return view('pages.meetups.my-meetups', compact('userMeetups'));
+    }
 
     /**
      * Displays the create page.

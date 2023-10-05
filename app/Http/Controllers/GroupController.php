@@ -15,5 +15,14 @@ class GroupController extends Controller
     {
         return view('pages.groups.index');
     }
+    
+        
+    /**
+     * Display the users personal groups
+     */
+    public function myGroups(): View
+    {
+        return view('pages.groups.my-groups');
+    }
 
 }

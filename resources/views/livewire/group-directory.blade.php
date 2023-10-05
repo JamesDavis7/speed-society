@@ -1,9 +1,9 @@
 <div>
     <div class="flex justify-between pb-10">
-        <x-button href="{{ route('meetups.index')}}">
-            Go Back
-        </x-button>
         <div class="flex items-center gap-2">
+            <x-button href="{{ route('groups.my-groups') }}">
+                My Groups
+            </x-button>   
             <div>
                 <select name="groups" wire:model.live="privacy">
                     <option value="" hidden>Select</option>
@@ -12,9 +12,6 @@
                     <option value="private" wire:model="private">Private Only</option>
                 </select>
             </div>
-            <x-button href="{{ route('groups.create') }}">
-                Create A Group
-            </x-button>   
         </div>     
     </div>
     
@@ -31,7 +28,6 @@
             <x-button class="w-full rounded-none rounded-b">Join Group</x-button>
         </div>
         @endforeach
-        
     </div>
 
     {{ $groups->links() }}
