@@ -57,7 +57,7 @@ class MeetupController extends Controller
     /**
      * Displays the edit page.
      */
-    public function edit($id)
+    public function edit($id): View
     {
         $meetup = Meetup::findOrFail($id);
         $categories = MeetupCategoryEnum::cases();

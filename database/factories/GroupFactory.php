@@ -3,8 +3,6 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use App\Models\User;
-use App\Models\Group;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Group>
@@ -21,6 +19,7 @@ class GroupFactory extends Factory
         return [
             'name' => $this->faker->word,
             'description' => $this->faker->paragraph,
+            'thumbnail' => $this->faker->imageUrl(),
             'privacy' => $this->faker->randomElement(['PUBLIC', 'PRIVATE', 'HIDDEN']),
         ];
     }

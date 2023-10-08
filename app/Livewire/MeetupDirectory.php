@@ -27,7 +27,7 @@ class MeetupDirectory extends Component
 
 
     /**
-     * Runs when the component is first mounted
+     * Runs when the component is first mounted.
      */
     public function mount()
     {

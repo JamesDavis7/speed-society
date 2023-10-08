@@ -8,7 +8,7 @@
     <x-button href="{{ route('groups.index') }}">Back</x-button>
     <div class="w-full">
         <h1 class="text-5xl font-light">My Groups</h1>
-        <p>Create, update and delete your groups here</p>
+        <p class="text-gray-500">Your personal group directory</p>
     </div>
 </div>
 

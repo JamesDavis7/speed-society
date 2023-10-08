@@ -10,6 +10,9 @@ class MyGroupDirectory extends Component
     public $user;
     public $userGroups;
 
+    /**
+     * Runs when the component is first mounted.
+     */
     public function mount()
     {
         $this->user = Auth::user();
