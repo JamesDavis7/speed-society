@@ -10,6 +10,13 @@ class Group extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name',
+        'description',
+        'thumbnail',
+        'privacy',
+    ];
+
     /**
      * Modify the meetup category value from the table.
      */
