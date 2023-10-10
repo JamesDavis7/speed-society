@@ -1,5 +1,11 @@
 <div>
-    <x-button class="flex justify-self-end" wire:click="$dispatch('open-modal', {name: 'createGroup'})">Create a group</x-button>
+    <x-button class="flex justify-self-end" wire:click="$dispatch('open-modal')">Create a group</x-button>
+    
+    @if(session('success'))
+    <div class="px-2 py-2 mt-2 bg-green-300 rounded">
+        <span class="text-xl font-light text-green-800">{{ session('success') }}</span>
+    </div>
+    @endif
     
     <div class="flex flex-col gap-8 my-10">
         <div class="flex gap-2">
@@ -11,13 +17,13 @@
         </div>
         @foreach($userGroups as $group)
             <x-directory-card title="{{ $group->name }}" description="{{ $group->description }}">
-                    <x-button class="mt-4" wire:click="$dispatch('open-modal', {name: 'editGroup'})">Edit Group</x-button>
-                    <x-button variant="danger" class="mt-4" x-on:click="console.log('delete group')">Delete Group</x-button>
+                <x-button class="mt-4" x-on:click="$dispatch('open-modal'); $dispatch('editing', {id: {{ $group->id }} })">Edit Group</x-button>
+                <x-button variant="danger" class="mt-4" x-on:click="console.log('delete group')">Delete Group</x-button>
             </x-directory-card>
         @endforeach  
         
         {{-- create and edit modals --}}
-        <x-modal title="Create a group" name="createGroup">
+        <x-modal :title="$editing ? 'Edit Your Group' : 'Create a Group'">
             <form wire:submit="save" class="flex flex-col gap-2">
                 <div class="flex flex-col">
                     <label for="groupName">Group Name</label>
@@ -49,8 +55,5 @@
                 </x-button>
             </form>
         </x-modal>
-        {{-- <x-modal title="Edit your existing group" name="editGroup">
-            <p>Edit your group using the form below.</p>
-        </x-modal> --}}
     </div>
 </div>

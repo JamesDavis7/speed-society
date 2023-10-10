@@ -5,11 +5,9 @@
             My Meetups
         </x-button>
     </div>
-
     <h1 class="mb-10 text-5xl font-light">Meetups</h1>
     <div class="flex flex-col gap-4">
         <div class="grid items-end grid-cols-5 gap-2">
-            
             {{-- Filters --}}
             <div class="w-full col-span-2">
                 <label for="manual-search">Search By Title</label>

@@ -5,10 +5,11 @@
 
 <div class="fixed inset-0 flex items-center justify-center w-full h-full" 
     x-data="{ 
-        show: true,
+        show: false,
         name: '{{ $name }}'
     }"
-    x-on:open-modal.window="show = ($event.detail.name === name)"
+    x-on:open-modal.window="show = true"
+    x-on:close-modal.window="show = false"
     x-show="show"
     x-cloak>
     <div class="fixed inset-0 w-full bg-black opacity-50"></div>

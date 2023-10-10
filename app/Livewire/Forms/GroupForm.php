@@ -7,7 +7,7 @@ use Livewire\Attributes\Rule;
 
 class GroupForm extends Form
 {
-    #[Rule(['required', 'unique:groups' ])]
+    #[Rule(['required', 'unique:groups,name'])]
     public $name;
 
     #[Rule(['required' , 'max:500'])]

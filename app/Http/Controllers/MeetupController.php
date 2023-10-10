@@ -51,8 +51,8 @@ class MeetupController extends Controller
 
         session()->flash('success', 'Meetup created successfully!');
 
-        return redirect()->route('meetups.index');    
-}
+        return redirect()->route('')->with('success', 'Operation completed successfully!');
+    }
 
     /**
      * Displays the edit page.
