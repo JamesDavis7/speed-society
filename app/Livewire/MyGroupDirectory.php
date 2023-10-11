@@ -12,6 +12,7 @@ class MyGroupDirectory extends Component
 {
     public GroupForm $form;
 
+    public $groupId;
     public $isEditing = false;
     public $user;
     public $userGroups;
@@ -27,6 +28,9 @@ class MyGroupDirectory extends Component
         $this->userGroups = $this->user->groups;
     }
 
+    /**
+     * 
+     */
     public function createGroup()
     {
         $this->isEditing = false;
@@ -44,13 +48,42 @@ class MyGroupDirectory extends Component
             $this->form->all()
         );
 
+        $this->form->reset();
+
+        $this->dispatch('close-modal');
+
         session()->flash('success', 'Group created successfully.');
     }
 
-    public function editGroup()
+    /**
+     * Handle the edit group modal.
+     */
+    public function editGroup($id)
     {
-        $this->isEditing = true;
         $this->dispatch('open-modal');
+        $this->isEditing = true;
+
+        $this->groupId = $id;
+    }
+
+    /**
+     * Update thhe 
+     */
+    public function update()
+    {
+        $this->form->validate();
+
+        $group = Group::find($this->groupId);
+
+        $group->update(
+            $this->form->all()
+        );
+
+        $this->form->reset();
+
+        $this->dispatch('close-modal');
+
+        session()->flash('success', 'Group updated successfully.');
     }
 
     /**

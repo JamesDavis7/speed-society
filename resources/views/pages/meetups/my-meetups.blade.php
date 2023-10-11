@@ -32,11 +32,12 @@
             image="{{ $meetup->thumbnail }}"
             >
             <div class="p-4">
-            <p><span class="font-semibold">Date:</span> {{ formatDateTime($meetup->time) }}</p>
-            <p><span class="font-semibold">Meetup Organiser:</span> {{ $meetup->user->name }}</p>
-            <p><span class="font-semibold">Location:</span> {{ $meetup->location }}</p>
-            <p><span class="font-semibold">Category:</span> {{  trans('enums.meetup_category.' . $meetup->category)}}</p>
+                <p><span class="font-semibold">Date:</span> {{ formatDateTime($meetup->time) }}</p>
+                <p><span class="font-semibold">Meetup Organiser:</span> {{ $meetup->user->name }}</p>
+                <p><span class="font-semibold">Location:</span> {{ $meetup->location }}</p>
+                <p><span class="font-semibold">Category:</span> {{  trans('enums.meetup_category.' . $meetup->category)}}</p>
             </div>
+            <x-button href="{{ route('meetups.edit', ['id' => $meetup->id])}}">Manage Meetup</x-button>
         </x-directory-card>
     @endforeach
 </div>

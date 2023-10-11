@@ -10,7 +10,7 @@
         @method('PUT')
         <div class="flex flex-col gap-4">
             <div class="grid grid-cols-3">
-                <x-button href="{{ route('meetups.index') }}">Back</x-button>
+                <x-button href="{{ route('meetups.my-meetups') }}">Back</x-button>
                 <div class="flex flex-col justify-center flex-1 mx-auto text-center">
                     <h1 class="text-5xl font-light">Manage your Meetup</h1>
                     <p class="mt-2">Update or delete your meetup</p>
