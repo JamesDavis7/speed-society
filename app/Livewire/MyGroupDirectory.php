@@ -6,15 +6,13 @@ use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
 use App\Enums\GroupPrivacyEnum;
 use App\Livewire\Forms\GroupForm;
-use Livewire\Attributes\On;
 use App\Models\Group;
 
 class MyGroupDirectory extends Component
 {
     public GroupForm $form;
 
-    public $editing = false;
-    public $modalTitle;
+    public $isEditing = false;
     public $user;
     public $userGroups;
     public $groupPrivacyOptions;
@@ -29,6 +27,12 @@ class MyGroupDirectory extends Component
         $this->userGroups = $this->user->groups;
     }
 
+    public function createGroup()
+    {
+        $this->isEditing = false;
+        $this->dispatch('open-modal');
+    }
+
     /**
     * Store the users input from the create group form.
     */
@@ -40,17 +44,14 @@ class MyGroupDirectory extends Component
             $this->form->all()
         );
 
-        $this->dispatch('close-modal');
-
         session()->flash('success', 'Group created successfully.');
     }
 
-    #[On('editing')]
-    public function edit($id)
+    public function editGroup()
     {
-        $this->editing = true;
+        $this->isEditing = true;
+        $this->dispatch('open-modal');
     }
-
 
     /**
      * Render the component.
