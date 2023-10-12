@@ -15,7 +15,6 @@ class MyGroupDirectory extends Component
     public $groupId;
     public $isEditing = false;
     public $user;
-    public $userGroups;
     public $groupPrivacyOptions;
 
     /**
@@ -25,11 +24,10 @@ class MyGroupDirectory extends Component
     {
         $this->groupPrivacyOptions = GroupPrivacyEnum::cases();
         $this->user = Auth::user();
-        $this->userGroups = $this->user->groups;
     }
 
     /**
-     * 
+     * Handle the create group modal.
      */
     public function createGroup()
     {
@@ -38,17 +36,17 @@ class MyGroupDirectory extends Component
     }
 
     /**
-    * Store the users input from the create group form.
+    * Create the group.
     */
     public function save()
-    {
+    {        
         $this->form->validate();
         
-        Group::create(
+        $group = Group::create(
             $this->form->all()
         );
 
-        $this->form->reset();
+        $this->user->groups()->attach($group);
 
         $this->dispatch('close-modal');
 
@@ -60,14 +58,21 @@ class MyGroupDirectory extends Component
      */
     public function editGroup($id)
     {
-        $this->dispatch('open-modal');
         $this->isEditing = true;
+
+        $group = Group::find($id);
+        $groupData = $group->toArray();
+        $groupData['privacy'] = strtolower($group->privacy);
+
+        $this->form->fill($groupData);
+        
+        $this->dispatch('open-modal');
 
         $this->groupId = $id;
     }
 
     /**
-     * Update thhe 
+     * Update the group.
      */
     public function update()
     {
@@ -79,8 +84,6 @@ class MyGroupDirectory extends Component
             $this->form->all()
         );
 
-        $this->form->reset();
-
         $this->dispatch('close-modal');
 
         session()->flash('success', 'Group updated successfully.');
@@ -91,6 +94,8 @@ class MyGroupDirectory extends Component
      */
     public function render()
     {
-        return view('livewire.my-group-directory');
+        $userGroups = $this->user->groups;
+
+        return view('livewire.my-group-directory', compact('userGroups'));
     }
 }

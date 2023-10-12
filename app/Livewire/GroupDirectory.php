@@ -9,10 +9,7 @@ use Livewire\WithPagination;
 class GroupDirectory extends Component
 {
     use WithPagination;
-
-    public $all;
-    public $public;
-    public $private;
+    
     public $privacy;
     
     /**
