@@ -12,6 +12,4 @@
     </div>
 </div>
 
-@livewire('my-group-directory')
-
 @endsection
