@@ -17,7 +17,7 @@
             @if($image)
                 <img src="{{ $image }}" alt="directory-card-image" class="w-full max-w-[12.5rem] h-full rounded">
             @endif
-            <div>
+            <div class="relative">
                 <h3 class="text-xl font-semibold">{!! $title !!}</h3>
                 <p class="text-sm">{{ $description }}</p>
                 <div>

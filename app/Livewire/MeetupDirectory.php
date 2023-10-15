@@ -25,7 +25,6 @@ class MeetupDirectory extends Component
     public $organisers;
     public $categories;
 
-
     /**
      * Runs when the component is first mounted.
      */
@@ -33,18 +32,6 @@ class MeetupDirectory extends Component
     {
         $this->mineOnly = false;
         $this->user = Auth::user();   
-    }
-
-    /**
-     * Render the component.
-     */
-    public function render()
-    {
-        $meetups = $this->handleMeetups();
-
-        return view('livewire.meetup-directory', [
-            'meetups' => $meetups,
-        ]);
     }
 
     /**
@@ -60,28 +47,40 @@ class MeetupDirectory extends Component
 
         $this->categories = MeetupCategoryEnum::cases();
         $this->organisers = User::pluck('name', 'id');
-
+        
         if($this->search){
             $query->where('title', 'LIKE', '%'.$this->search.'%');
         }
-
+        
         if ($this->organiser) {
             $query->where('organiser_id', $this->organiser);
         }
-
+        
         if ($this->category) {
             $query->where('category', $this->category);
         }
-
+        
         if($this->time) {
             if($this->time == 'earliest'){
                 $query->orderBy('time', 'asc')->get();
             } else{
                 $query->orderBy('time', 'desc')->get();
             }
-
+            
         }
-
+        
         return $query->paginate(5);
+    }
+
+    /**
+     * Render the component.
+     */
+    public function render()
+    {
+        $meetups = $this->handleMeetups();
+    
+        return view('livewire.meetup-directory', [
+            'meetups' => $meetups,
+        ]);
     }
 }

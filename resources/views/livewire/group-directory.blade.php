@@ -22,8 +22,8 @@
             <div class="flex flex-col h-full">
                 <x-directory-card class="rounded-b-none" title="{{ $group->name }}" description="{{ $group->description }}">
                     <p class="mt-3">Privacy: <span class="font-semibold">{{ $group->privacy }}</span></p>
+                    <x-button class="mt-4 rounded">{{ $group->privacy == "Private" ? "Request To Join Group" : "Join Group"}}</x-button>
                 </x-directory-card>
-                <x-button class="w-full rounded-none rounded-b">{{ $group->privacy == "Private" ? "Request To Join" : "Join"}}</x-button>
             </div>
         @endforeach
     </div>

@@ -4,12 +4,15 @@
 
 @section('content')
 
-<div class="flex w-full gap-4 mx-auto text-center">
+<div class="flex items-start w-full">
     <x-button href="{{ route('groups.index') }}">Back</x-button>
-    <div class="w-full">
+    <div class="flex flex-col items-center justify-center mx-auto">
         <h1 class="text-5xl font-light">My Groups</h1>
-        <p class="text-gray-500">Your personal group directory</p>
+        <p class="text-gray-500">Your personal groups directory</p>
+        
     </div>
 </div>
+
+@livewire('my-group-directory')
 
 @endsection

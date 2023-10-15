@@ -49,7 +49,7 @@ class MeetupController extends Controller
         $validatedData['organiser_id'] = Auth::id();
         Meetup::create($validatedData);
 
-        session()->flash('success', 'Meetup created successfully!');
+        session()->flash('meetupSuccess', 'Meetup created successfully!');
 
         return redirect()->route('')->with('success', 'Operation completed successfully!');
     }
@@ -75,7 +75,7 @@ class MeetupController extends Controller
         $meetup = Meetup::find($id);
         $meetup->update($validatedData);
 
-        session()->flash('success', 'Meetup updated successfully!');
+        session()->flash('meetupSuccess', 'Meetup updated successfully!');
 
         return redirect()->route('meetups.index');    
     }
@@ -88,7 +88,7 @@ class MeetupController extends Controller
         $meetup = Meetup::findOrFail($id);
         $meetup->delete();
     
-        session()->flash('success', 'Meetup deleted successfully!');
+        session()->flash('meetupSuccess', 'Meetup deleted successfully!');
 
         return redirect()->route('meetups.index');    
     }

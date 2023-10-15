@@ -4,11 +4,9 @@
 
 @section('content')
 
-<div class="flex w-full gap-4 mx-auto text-center">
-    <div class="flex flex-col justify-start gap-4">
-        <x-button href="{{ route('meetups.index') }}">Back</x-button>
-    </div>
-    <div class="w-full">
+<div class="flex items-start w-full">
+    <x-button href="{{ route('meetups.index') }}">Back</x-button>
+    <div class="flex flex-col items-center justify-center mx-auto">
         <h1 class="text-5xl font-light">My Meetups</h1>
         <p class="text-gray-500">Your personal meetups directory</p>
     </div>
