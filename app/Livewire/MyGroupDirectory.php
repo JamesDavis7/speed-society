@@ -67,7 +67,6 @@ class MyGroupDirectory extends Component
      */
     public function save()
     {
-        dd($this->user);
         $validatedData = $this->validate();
 
         $group = Group::create($validatedData);
