@@ -16,7 +16,7 @@ class MyGroupDirectory extends Component
     public $privacy;
     public $thumbnail;
     public $user;
-    public $text;
+    public $userGroups;
 
     public $groupId;
     public $isEditing = false;
@@ -36,16 +36,6 @@ class MyGroupDirectory extends Component
         ];
 
         return $rules;
-    }
-
-    /**
-     * Runs when the component is first mounted.
-     *
-     * @return void
-     */
-    public function mount()
-    {
-        $this->user = Auth::user();
     }
 
     /**
@@ -71,7 +61,7 @@ class MyGroupDirectory extends Component
 
         $group = Group::create($validatedData);
         
-        auth()->user()->groups()->attach($group->id);
+        $this->user->groups()->attach($group->id);
 
         $this->dispatch('close-modal');
 
@@ -155,7 +145,9 @@ class MyGroupDirectory extends Component
      */
     public function render()
     {
-        $userGroups = auth()->user()->groups;
-        return view('livewire.my-group-directory', compact('userGroups'));
+        $this->user = auth()->user();
+        $this->userGroups = $this->user->groups;
+        
+        return view('livewire.my-group-directory');
     }
 }

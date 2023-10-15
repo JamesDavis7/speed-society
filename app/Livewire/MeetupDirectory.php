@@ -31,7 +31,7 @@ class MeetupDirectory extends Component
     public function mount()
     {
         $this->mineOnly = false;
-        $this->user = Auth::user();   
+        $this->user = auth()->user();   
     }
 
     /**
