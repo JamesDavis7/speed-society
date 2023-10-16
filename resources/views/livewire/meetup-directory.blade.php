@@ -52,6 +52,7 @@
                 <p><span class="font-semibold">Meetup Organiser:</span> {{ $meetup->user->name }}</p>
                 <p><span class="font-semibold">Location:</span> {{ $meetup->location }}</p>
                 <p><span class="font-semibold">Category:</span> {{  trans('enums.meetup_category.' . $meetup->category)}}</p>
+                <x-button class="mt-4">Mark as going</x-button>
             </div>
             </x-directory-card>
     

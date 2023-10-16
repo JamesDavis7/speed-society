@@ -92,4 +92,15 @@ class MeetupController extends Controller
 
         return redirect()->route('meetups.my-meetups');    
     }
+
+        
+    /**
+     * Joins the user to the selected meetup
+     * 
+     * @return void
+     */
+    public function joinMeetup()
+    {
+        dd('hello');
+    }
 }

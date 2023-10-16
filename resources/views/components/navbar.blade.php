@@ -3,6 +3,8 @@
         <div class="flex gap-6">
             <a href="{{ route('meetups.index') }}" wire:navigate>Meetups</a>
             <a href="{{ route('groups.index') }}" wire:navigate>Groups</a>
+        </div>
+        <div>
             <a href="#" wire:navigate>Profile</a>
         </div>
     </nav>
