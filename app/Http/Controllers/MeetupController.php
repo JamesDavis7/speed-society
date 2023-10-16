@@ -51,7 +51,7 @@ class MeetupController extends Controller
 
         session()->flash('meetupSuccess', 'Meetup created successfully!');
 
-        return redirect()->route('')->with('success', 'Operation completed successfully!');
+        return redirect()->route('meetups.my-meetups')->with('meetupSuccess', 'Meetup create successfully!');
     }
 
     /**
@@ -77,7 +77,7 @@ class MeetupController extends Controller
 
         session()->flash('meetupSuccess', 'Meetup updated successfully!');
 
-        return redirect()->route('meetups.index');    
+        return redirect()->route('meetups.my-meetups');    
     }
 
     /**
@@ -90,6 +90,6 @@ class MeetupController extends Controller
     
         session()->flash('meetupSuccess', 'Meetup deleted successfully!');
 
-        return redirect()->route('meetups.index');    
+        return redirect()->route('meetups.my-meetups');    
     }
 }

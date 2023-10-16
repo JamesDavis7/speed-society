@@ -12,12 +12,6 @@
         <header>
             @include('components.navbar')
         </header>
-        
-        @if(session('success'))
-            <div class="w-full py-4 text-center bg-green-300">
-                <span class="text-xl font-light text-green-800">{{ session('success')}}</span>
-            </div>
-        @endif
 
         <div class="container py-12 mx-auto">
 

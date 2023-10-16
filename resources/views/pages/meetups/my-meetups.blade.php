@@ -2,6 +2,12 @@
 
 @section('page_title', 'Meetups')
 
+@if(session('meetupSuccess'))
+<div class="w-full py-4 text-center bg-green-300">
+    <span class="text-xl font-light text-green-800">{{ session('meetupSuccess')}}</span>
+</div>
+@endif
+
 @section('content')
 
 <div class="flex items-start w-full">

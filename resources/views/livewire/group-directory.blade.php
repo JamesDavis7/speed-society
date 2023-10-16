@@ -6,7 +6,6 @@
             </x-button>   
             <div>
                 <select name="groups" wire:model.live="privacy">
-                    <option value="" hidden>Select</option>
                     <option value="all" wire:model="all">All Groups</option>
                     <option value="public" wire:model="public">Public Only</option>
                     <option value="private" wire:model="private">Private Only</option>

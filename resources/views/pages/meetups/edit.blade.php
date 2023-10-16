@@ -24,10 +24,10 @@
                 <select type="text" name="location" class="w-full">
                     <option value="" hidden>Select</option>
                     @foreach($locations as $location)
-                    <option value="{{ $location->location }}" {{ old('location', $meetup->location) == $location->location ? 'selected' : '' }}>
-                        {{ $location->location }}
-                    </option>                    
-                @endforeach
+                        <option value="{{ $location->location }}" {{ old('location', $meetup->location) == $location->location ? 'selected' : '' }}>
+                            {{ $location->location }}
+                        </option>                    
+                    @endforeach
                 </select>
                 @error('location')<p class="text-red-500">{{ $message }}</p>@enderror
             </div>
