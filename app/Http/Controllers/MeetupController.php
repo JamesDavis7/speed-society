@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\CreateMeetupRequest;
-use App\Http\Requests\EditMeetupRequest;
+use App\Http\Requests\MeetupRequest;
 use Illuminate\View\View;
 use App\Models\Meetup;
 use Illuminate\Support\Facades\Auth;
@@ -43,7 +42,7 @@ class MeetupController extends Controller
     /**
      * Stores the user input.
      */
-    public function store(CreateMeetupRequest $request)
+    public function store(MeetupRequest $request)
     {
         $validatedData = $request->validated();
         $validatedData['organiser_id'] = Auth::id();
@@ -69,7 +68,7 @@ class MeetupController extends Controller
     /**
      * Updates the previous user input.
      */
-    public function update(EditMeetupRequest $request, $id)
+    public function update(MeetupRequest $request, $id)
     {
         $validatedData = $request->validated();
         $meetup = Meetup::find($id);

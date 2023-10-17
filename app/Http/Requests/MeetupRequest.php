@@ -3,8 +3,10 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use App\Models\Meetup;
+use Illuminate\Validation\Rule;
 
-class CreateMeetupRequest extends FormRequest
+class MeetupRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -21,12 +23,14 @@ class CreateMeetupRequest extends FormRequest
      */
     public function rules(): array
     {
+        $meetupId = Meetup::where('organiser_id', auth()->user()->id)->first();
+
         return [
-            'title' => 'required|unique:meetups',
-            'description' => 'required|max:500',
-            'location' => 'required',
-            'time' => 'required', 
-            'thumbnail' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+            'title' => ['required', Rule::unique('meetups', 'title')->ignore($meetupId, 'id')],
+            'description' => ['required', 'max:500'],
+            'location' => ['required'],
+            'time' => ['required', 'after:now'], 
+            'thumbnail' => ['nullable', 'image|mimes:jpeg,png,jpg|max:2048'],
             'category' => ['required', 'in:meetups,static,cruise,club'],
         ];
     }

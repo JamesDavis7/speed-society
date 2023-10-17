@@ -4,7 +4,9 @@
 
 @section('content')
 
-<div class="flex flex-col justify-center max-w-6xl gap-4 mx-auto mt-10">
+<div class="flex flex-col justify-center max-w-6xl gap-4 mx-auto mt-10" x-data="{
+        showDeleteModal: false
+    }">
     <form method="POST" action="{{ route('meetups.update', $meetup->id) }}">
         @csrf
         @method('PUT')
@@ -57,12 +59,16 @@
         </div>
         <x-button type="submit" class="flex justify-center w-full mt-4">Update</x-button>
     </form>
-    <form action="{{ route('meetups.destroy', $meetup->id) }}" method="POST">
-        @csrf
-        @method('DELETE')
-        <x-button type="submit" variant="danger" class="flex justify-center w-full">Delete This Meetup</x-button>
-    </form>
+    <x-button type="submit" variant="danger" class="flex justify-center w-full" x-on:click="showDeleteModal = true;">Delete This Meetup</x-button>
+
+    <x-modal show="showDeleteModal" title="Are you sure?">
+        <form action="{{ route('meetups.destroy', $meetup->id) }}" method="POST">
+            @csrf
+            @method('DELETE')
+        </form>
+    </x-modal>
 </div>
+
 
 
 
