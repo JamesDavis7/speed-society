@@ -1,5 +1,6 @@
 <div x-data="{ 
         openModal: false, 
+        deleteModal: false
     }"
     x-on:open-modal.window="openModal = true"
     x-on:close-modal.window="openModal = false"
@@ -23,7 +24,16 @@
             @foreach($userGroups as $group)
                 <x-directory-card title="{{ $group->name }}" description="{{ $group->description }}">
                     <x-button class="mt-4" wire:click="editGroup({{ $group->id }})">Edit Group</x-button>
-                    <x-button variant="danger" class="mt-4" wire:click="deleteGroup({{ $group->id }})">Delete Group</x-button>
+
+                    <x-button variant="danger" class="mt-4" x-on:click="deleteModal = true;">Delete Group</x-button>
+                    <x-modal show="deleteModal" title="Are you sure?">
+                        <h1 class="pb-4">This action is irreversible.</h1>
+                        <div class="flex gap-2">
+                            <x-button type="submit" class="flex justify-center w-full" x-on:click="deleteModal = false;">No, cancel</x-button>
+                            <x-button type="submit" variant="danger" class="flex justify-center w-full" wire:click="deleteGroup({{ $group->id }})">Yes, delete</x-button>
+                        </div>
+                    </x-modal>
+                    
                 </x-directory-card>
             @endforeach  
         @else

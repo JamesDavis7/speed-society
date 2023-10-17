@@ -62,10 +62,17 @@
     <x-button type="submit" variant="danger" class="flex justify-center w-full" x-on:click="showDeleteModal = true;">Delete This Meetup</x-button>
 
     <x-modal show="showDeleteModal" title="Are you sure?">
-        <form action="{{ route('meetups.destroy', $meetup->id) }}" method="POST">
-            @csrf
-            @method('DELETE')
-        </form>
+        <h1 class="pb-4">This action is irreversible.</h1>
+        <div class="flex gap-2">
+            <x-button type="submit" class="flex justify-center w-full" x-on:click="showDeleteModal = false;">No, cancel</x-button>
+            <div class="w-full">
+                <form action="{{ route('meetups.destroy', $meetup->id) }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <x-button type="submit" variant="danger" class="flex justify-center w-full" x-on:click="showDeleteModal = true;">Yes, delete</x-button>
+                </form>
+            </div>
+        </div>
     </x-modal>
 </div>
 
