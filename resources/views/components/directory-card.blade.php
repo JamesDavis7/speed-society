@@ -15,7 +15,7 @@
     <div {{ $attributes->merge(['class' => 'relative h-full p-4 overflow-hidden bg-white border border-black rounded']) }}>
         <div class="flex flex-col gap-4 md:flex-row">
             @if($image)
-                <img src="{{ $image }}" alt="directory-card-image" class="w-full max-w-[12.5rem] h-full rounded">
+                <img src="{{ $image }}" alt="directory-card-image" class="w-full h-full max-w-[12.5rem] rounded">
             @endif
             <div class="relative">
                 <h3 class="text-xl font-semibold">{!! $title !!}</h3>
