@@ -40,6 +40,7 @@
                     </select>
                 </div>
         </div>
+
         @forelse($meetups as $meetup)
             <x-directory-card 
                 id="{{ $meetup->id }}"
@@ -49,10 +50,14 @@
             >
             <div class="p-4">
                 <p><span class="font-semibold">Date:</span> {{ formatDateTime($meetup->time) }}</p>
-                <p><span class="font-semibold">Meetup Organiser:</span> {{ $meetup->user->name }}</p>
+                <p><span class="font-semibold">Meetup Organiser:</span> {{ $meetup->name }}</p>
                 <p><span class="font-semibold">Location:</span> {{ $meetup->location }}</p>
                 <p><span class="font-semibold">Category:</span> {{  trans('enums.meetup_category.' . $meetup->category)}}</p>
-                <x-button class="mt-4">Mark as going</x-button>
+                <form method="POST" action="/meetups/mark-as-going">
+                    @csrf
+                    @method('PUT')
+                    <x-button class="mt-4">I'm interested</x-button>
+                </form>
             </div>
             </x-directory-card>
     

@@ -41,19 +41,13 @@ class MeetupDirectory extends Component
     {
         if(!$this->mineOnly){
             $query = Meetup::query();
-        } else{
-            $query = Meetup::where('organiser_id', $this->user->id);
         }
-
+        
         $this->categories = MeetupCategoryEnum::cases();
         $this->organisers = User::pluck('name', 'id');
         
         if($this->search){
             $query->where('title', 'LIKE', '%'.$this->search.'%');
-        }
-        
-        if ($this->organiser) {
-            $query->where('organiser_id', $this->organiser);
         }
         
         if ($this->category) {

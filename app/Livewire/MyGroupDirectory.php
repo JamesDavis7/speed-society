@@ -124,6 +124,8 @@ class MyGroupDirectory extends Component
 
         $group->delete();
 
+        $this->dispatch('close-modal');
+
         session()->flash('groupSuccess', 'Group deleted successfully.');
     }
 
@@ -132,7 +134,7 @@ class MyGroupDirectory extends Component
      *
      * @return void
      */
-    #[On('closeGroupModal')] 
+    #[On('closeGroupModal')]
     public function resetValidationOnClose()
     {
         $this->resetValidation();

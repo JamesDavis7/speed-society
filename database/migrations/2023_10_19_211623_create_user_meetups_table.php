@@ -11,14 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('meetups', function (Blueprint $table) {
+        Schema::create('user_meetups', function (Blueprint $table) {
             $table->id();
-            $table->text('title');
-            $table->text('description');
-            $table->string('location')->nullable();
-            $table->dateTime('time');
-            $table->string('thumbnail')->nullable();
-            $table->enum('category', ['static', 'cruise', 'club']);
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('meetup_id');
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('meetup_id')->references('id')->on('meetups');
             $table->timestamps();
         });
     }
@@ -28,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('meetups');
+        Schema::dropIfExists('user_meetups');
     }
 };

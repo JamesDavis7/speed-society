@@ -23,14 +23,14 @@ class MeetupRequest extends FormRequest
      */
     public function rules(): array
     {
-        $meetupId = Meetup::where('organiser_id', auth()->user()->id)->first();
+        $meetupId = Meetup::where('id', auth()->user()->id)->first();
 
         return [
             'title' => ['required', Rule::unique('meetups', 'title')->ignore($meetupId, 'id')],
             'description' => ['required', 'max:500'],
             'location' => ['required'],
             'time' => ['required', 'after:now'], 
-            'thumbnail' => ['nullable', 'image|mimes:jpeg,png,jpg|max:2048'],
+            'thumbnail' => ['nullable', 'image', 'mimes:jpeg,png,jpg|max:2048'],
             'category' => ['required', 'in:meetups,static,cruise,club'],
         ];
     }

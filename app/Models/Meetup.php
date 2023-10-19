@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Meetup extends Model
 {
@@ -18,14 +18,13 @@ class Meetup extends Model
         'time',
         'thumbnail',
         'category',
-        'organiser_id'
     ];
 
     /**
      * Attach the meetups to the user model.
      */
-    public function user(): BelongsTo
+    public function users(): BelongsToMany
     {
-        return $this->belongsTo(User::class, 'organiser_id');
+        return $this->belongsToMany(User::class, 'user_meetups', 'meetup_id', 'user_id');
     }
 }     

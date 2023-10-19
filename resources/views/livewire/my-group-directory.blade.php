@@ -3,7 +3,7 @@
         deleteModal: false
     }"
     x-on:open-modal.window="openModal = true"
-    x-on:close-modal.window="openModal = false"
+    x-on:close-modal.window="openModal = false; deleteModal = false;"
     >
     <x-button class="flex justify-self-end" wire:click="createGroup">Create a group</x-button>
 
@@ -12,6 +12,7 @@
             <span class="text-xl font-light text-green-800">{{ session('groupSuccess') }}</span>
         </div>
     @endif
+    
     <div class="flex flex-col gap-8 my-10">
         <div class="flex gap-2">
             <h1 class="text-4xl font-semibold">Groups I'm</h1>
@@ -24,7 +25,7 @@
             @foreach($userGroups as $group)
                 <x-directory-card title="{{ $group->name }}" description="{{ $group->description }}">
                     <x-button class="mt-4" wire:click="editGroup({{ $group->id }})">Edit Group</x-button>
-
+                    
                     <x-button variant="danger" class="mt-4" x-on:click="deleteModal = true;">Delete Group</x-button>
                     <x-modal show="deleteModal" title="Are you sure?">
                         <h1 class="pb-4">This action is irreversible.</h1>

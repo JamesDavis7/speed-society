@@ -26,7 +26,6 @@ class MeetupFactory extends Factory
             'time' => $this->faker->dateTimeBetween('now', '+1 year'),
             'thumbnail' => $this->faker->imageUrl(),
             'category' => $this->faker->randomElement(['static', 'cruise', 'club']),
-            'organiser_id' => $user->id,
         ];
     }
 }

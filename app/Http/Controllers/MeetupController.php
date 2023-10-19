@@ -8,6 +8,7 @@ use App\Models\Meetup;
 use Illuminate\Support\Facades\Auth;
 use App\Enums\MeetupCategoryEnum;
 use App\Models\Location;
+use App\Models\User;
 
 class MeetupController extends Controller
 {
@@ -45,8 +46,12 @@ class MeetupController extends Controller
     public function store(MeetupRequest $request)
     {
         $validatedData = $request->validated();
-        $validatedData['organiser_id'] = Auth::id();
-        Meetup::create($validatedData);
+
+        $meetup = Meetup::create($validatedData);
+
+        $user = Auth::user();
+
+        $user->meetups()->attach($meetup->id);
 
         session()->flash('meetupSuccess', 'Meetup created successfully!');
 
@@ -85,6 +90,10 @@ class MeetupController extends Controller
     public function destroy($id)
     {
         $meetup = Meetup::findOrFail($id);
+
+        $relatedUser = User::find(Auth::id());
+        $relatedUser->meetups()->detach($id);
+
         $meetup->delete();
     
         session()->flash('meetupSuccess', 'Meetup deleted successfully!');
@@ -92,14 +101,13 @@ class MeetupController extends Controller
         return redirect()->route('meetups.my-meetups');    
     }
 
-        
     /**
      * Joins the user to the selected meetup
      * 
      * @return void
      */
-    public function joinMeetup()
+    public function markAsGoing($id)
     {
-        dd('hello');
+        $meetup = Meetup::find($id);
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -46,12 +47,12 @@ class User extends Authenticatable
     /**
      * Get the users attached meetups.
      */
-    public function meetups(): HasMany
+    public function meetups(): BelongsToMany
     {
-        return $this->hasMany(Meetup::class, 'organiser_id');
+        return $this->belongsToMany(Meetup::class, 'user_meetups', 'user_id', 'meetup_id');
     }
 
-    public function groups()
+    public function groups(): BelongsToMany
     {
         return $this->belongsToMany(Group::class, 'user_groups', 'user_id', 'group_id')->withPivot('role');
     }
