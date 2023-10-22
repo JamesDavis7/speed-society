@@ -50,7 +50,7 @@
             >
             <div class="p-4">
                 <p><span class="font-semibold">Date:</span> {{ formatDateTime($meetup->time) }}</p>
-                <p><span class="font-semibold">Meetup Organiser:</span>N/A</p>
+                <p><span class="font-semibold">Meetup Organiser:</span>
                 <p><span class="font-semibold">Location:</span> {{ $meetup->location }}</p>
                 <p><span class="font-semibold">Category:</span> {{  trans('enums.meetup_category.' . $meetup->category)}}</p>
                 <form method="POST" action="/meetups/mark-as-going">

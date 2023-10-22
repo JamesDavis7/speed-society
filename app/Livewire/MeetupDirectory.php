@@ -21,6 +21,8 @@ class MeetupDirectory extends Component
     public $latest;
     public $earliest;
     public $mineOnly;
+    public $organiserName;
+    public $meetupOrganisers;
 
     public $organisers;
     public $categories;
@@ -31,7 +33,8 @@ class MeetupDirectory extends Component
     public function mount()
     {
         $this->mineOnly = false;
-        $this->user = auth()->user();   
+        $this->user = auth()->user();  
+        $this->meetupOrganisers = Meetup::with('users')->find(13);
     }
 
     /**
@@ -39,32 +42,32 @@ class MeetupDirectory extends Component
      */
     private function handleMeetups()
     {
-        if(!$this->mineOnly){
-            $query = Meetup::query();
-        }
-        
         $this->categories = MeetupCategoryEnum::cases();
         $this->organisers = User::pluck('name', 'id');
-        
-        if($this->search){
-            $query->where('title', 'LIKE', '%'.$this->search.'%');
+
+        $query = Meetup::query();
+
+        if ($this->mineOnly) {
+            // Filter meetups associated with the current user
+            $query->whereHas('users', function ($q) {
+                $q->where('user_id', $this->user->id);
+            });
         }
-        
+    
+        if ($this->search) {
+            $query->where('title', 'LIKE', '%' . $this->search . '%');
+        }
+    
         if ($this->category) {
             $query->where('category', $this->category);
         }
-        
-        if($this->time) {
-            if($this->time == 'earliest'){
-                $query->orderBy('time', 'asc')->get();
-            } else{
-                $query->orderBy('time', 'desc')->get();
-            }
-            
+    
+        if ($this->time) {
+            $query->orderBy('time', $this->time == 'earliest' ? 'asc' : 'desc');
         }
-        
+    
         return $query->paginate(5);
-    }
+}
 
     /**
      * Render the component.

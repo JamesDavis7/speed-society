@@ -34,7 +34,7 @@ class MeetupController extends Controller
      */
     public function create(Meetup $meetup): View
     {
-        $meetup = Meetup::firstOrFail();
+        $meetup = new Meetup();
         $locations = Location::all();
         $categories = MeetupCategoryEnum::cases();
         return view('pages.meetups.create', compact('categories', 'locations', 'meetup'));
