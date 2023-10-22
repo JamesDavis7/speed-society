@@ -52,6 +52,9 @@ class User extends Authenticatable
         return $this->belongsToMany(Meetup::class, 'user_meetups', 'user_id', 'meetup_id');
     }
 
+    /**
+     * Get the users attached groups.
+     */
     public function groups(): BelongsToMany
     {
         return $this->belongsToMany(Group::class, 'user_groups', 'user_id', 'group_id')->withPivot('role');

@@ -34,7 +34,6 @@ class MeetupDirectory extends Component
     {
         $this->mineOnly = false;
         $this->user = auth()->user();  
-        $this->meetupOrganisers = Meetup::with('users')->find(13);
     }
 
     /**
@@ -48,7 +47,6 @@ class MeetupDirectory extends Component
         $query = Meetup::query();
 
         if ($this->mineOnly) {
-            // Filter meetups associated with the current user
             $query->whereHas('users', function ($q) {
                 $q->where('user_id', $this->user->id);
             });
@@ -60,6 +58,12 @@ class MeetupDirectory extends Component
     
         if ($this->category) {
             $query->where('category', $this->category);
+        }
+
+        if ($this->organiser) {
+            $query->whereHas('users', function ($q) {
+                $q->where('user_id', $this->organiser);
+            });        
         }
     
         if ($this->time) {
