@@ -51,7 +51,7 @@ class MeetupController extends Controller
 
         $user = Auth::user();
 
-        $user->meetups()->attach($meetup->id);
+        $user->meetups()->attach($meetup->id, ['role' => 'organiser']);
 
         session()->flash('meetupSuccess', 'Meetup created successfully!');
 
@@ -99,15 +99,5 @@ class MeetupController extends Controller
         session()->flash('meetupSuccess', 'Meetup deleted successfully!');
 
         return redirect()->route('meetups.my-meetups');    
-    }
-
-    /**
-     * Joins the user to the selected meetup
-     * 
-     * @return void
-     */
-    public function markAsGoing($id)
-    {
-        $meetup = Meetup::find($id);
     }
 }

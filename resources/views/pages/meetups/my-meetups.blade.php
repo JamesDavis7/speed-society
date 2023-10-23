@@ -39,9 +39,9 @@
                 <div class="p-4">
                     <p><span class="font-semibold">Date:</span> {{ formatDateTime($meetup->time) }}</p>
                     <p><span class="font-semibold">Meetup Organiser:</span>
-                        @foreach($meetup->users as $user)
-                            {{ $user->name }}
-                        @endforeach
+                    @foreach($meetup->users->where('pivot.role', 'organiser') as $user)
+                        {{ $user->name }} 
+                    @endforeach
                     </p>
                     <p><span class="font-semibold">Location:</span> {{ $meetup->location }}</p>
                     <p><span class="font-semibold">Category:</span> {{  trans('enums.meetup_category.' . $meetup->category)}}</p>

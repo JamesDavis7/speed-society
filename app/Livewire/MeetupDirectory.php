@@ -23,6 +23,7 @@ class MeetupDirectory extends Component
     public $mineOnly;
     public $organiserName;
     public $meetupOrganisers;
+    public $isGoing;
 
     public $organisers;
     public $categories;
@@ -42,16 +43,13 @@ class MeetupDirectory extends Component
     private function handleMeetups()
     {
         $this->categories = MeetupCategoryEnum::cases();
-        $this->organisers = User::pluck('name', 'id');
-
-        $query = Meetup::query();
-
-        if ($this->mineOnly) {
-            $query->whereHas('users', function ($q) {
-                $q->where('user_id', $this->user->id);
-            });
-        }
+        $this->organisers = User::where('id', '!=', $this->user->id)->pluck('name', 'id');
     
+        $query = Meetup::query()->whereHas('users', function ($q) {
+            $q->where('role', 'organiser')
+               ->where('user_id', '!=', $this->user->id);
+        });
+
         if ($this->search) {
             $query->where('title', 'LIKE', '%' . $this->search . '%');
         }
@@ -59,7 +57,7 @@ class MeetupDirectory extends Component
         if ($this->category) {
             $query->where('category', $this->category);
         }
-
+    
         if ($this->organiser) {
             $query->whereHas('users', function ($q) {
                 $q->where('user_id', $this->organiser);
@@ -71,7 +69,16 @@ class MeetupDirectory extends Component
         }
     
         return $query->paginate(5);
-}
+    }
+        
+    /**
+     * Handle the user toggling their whether or not they're going
+     */
+    public function toggleIsGoing($meetupId)
+    {
+        $this->isGoing = !$this->isGoing;
+        $this->user->meetups()->toggle([$meetupId => ['role' => 'participant']]);
+    }
 
     /**
      * Render the component.

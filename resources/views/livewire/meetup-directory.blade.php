@@ -30,15 +30,15 @@
                     @endforeach
                 </select>
             </div>
-                <div>
-                    <label for="organiser">Organiser</label>
-                    <select class="w-full" name="organiser" wire:model.live="organiser">
-                        <option value="" hidden>Select</option>
-                        @foreach($organisers as $id => $name)
-                            <option value="{{ $id }}">{{ $name }}</option>
-                        @endforeach
-                    </select>
-                </div>
+            <div>
+                <label for="organiser">Organiser</label>
+                <select class="w-full" name="organiser" wire:model.live="organiser">
+                    <option value="" hidden>Select</option>
+                    @foreach($organisers as $id => $name)
+                        <option value="{{ $id }}">{{ $name }}</option>
+                    @endforeach
+                </select>
+            </div>
         </div>
 
         @forelse($meetups as $meetup)
@@ -51,17 +51,16 @@
             <div class="p-4">
                 <p><span class="font-semibold">Date:</span> {{ formatDateTime($meetup->time) }}</p>
                 <p><span class="font-semibold">Meetup Organiser:</span>
-                    @foreach($meetup->users as $user)
+                    @foreach($meetup->users->where('pivot.role', 'organiser') as $user)
                         {{ $user->name }} 
                     @endforeach
                 </p>
                 <p><span class="font-semibold">Location:</span> {{ $meetup->location }}</p>
                 <p><span class="font-semibold">Category:</span> {{  trans('enums.meetup_category.' . $meetup->category)}}</p>
-                <form method="POST" action="/meetups/mark-as-going">
-                    @csrf
-                    @method('PUT')
-                    <x-button class="mt-4">I'm interested</x-button>
-                </form>
+                <p>This meetup currently has {{ count($meetup->users->where('pivot.role', 'participant')) }} participant(s)*</p>
+                <div class="mt-4">
+                    <x-button variant="{{ (Auth::user()->isGoingToMeetup($meetup) ? 'primary' : 'success' )}}" wire:click="toggleIsGoing({{ $meetup->id }})">{{ $isGoing ? "I'm going" : "I'm not going"}}</x-button>
+                </div>
             </div>
             </x-directory-card>
     

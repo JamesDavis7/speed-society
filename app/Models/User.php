@@ -45,6 +45,14 @@ class User extends Authenticatable
     ];
 
     /**
+     * Check if the user has said they're going to the meetup
+     */
+    public function isGoingToMeetup(Meetup $meetup)
+    {
+        return $this->meetups()->where('meetup_id', $meetup->id)->exists();
+    }
+
+    /**
      * Get the users attached meetups.
      */
     public function meetups(): BelongsToMany
