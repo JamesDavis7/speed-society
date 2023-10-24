@@ -23,7 +23,7 @@ class Meetup extends Model
 
     /**
      * Attach the meetups to the user model.
-     */
+    */     
     public function users(): BelongsToMany
     {
         return $this->belongsToMany(User::class, 'user_meetups', 'meetup_id', 'user_id')->withPivot('role');

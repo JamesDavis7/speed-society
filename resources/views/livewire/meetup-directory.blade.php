@@ -53,17 +53,20 @@
                 <p><span class="font-semibold">Meetup Organiser:</span>
                     @foreach($meetup->users->where('pivot.role', 'organiser') as $user)
                         {{ $user->name }} 
+                        
                     @endforeach
                 </p>
                 <p><span class="font-semibold">Location:</span> {{ $meetup->location }}</p>
                 <p><span class="font-semibold">Category:</span> {{  trans('enums.meetup_category.' . $meetup->category)}}</p>
-                <p>This meetup currently has {{ count($meetup->users->where('pivot.role', 'participant')) }} participant(s)*</p>
+                <p><span class="font-semibold">Participants:</span> {{ count($meetup->users->where('pivot.role', 'participant')) }}</p>
                 <div class="mt-4">
-                    <x-button variant="{{ (Auth::user()->isGoingToMeetup($meetup) ? 'primary' : 'success' )}}" wire:click="toggleIsGoing({{ $meetup->id }})">{{ $isGoing ? "I'm going" : "I'm not going"}}</x-button>
+                    <x-button 
+                        variant="{{ Auth::user()->isGoingToMeetup($meetup) ? 'primary' : 'success'}}" 
+                        wire:click="toggleIsGoing({{ $meetup->id }})">{{ Auth::user()->isGoingToMeetup($meetup) ? 'I\'m not going' : 'I\'m going' }}
+                    </x-button>
                 </div>
             </div>
             </x-directory-card>
-    
             @empty
             <p>no results found!</p>
         @endforelse

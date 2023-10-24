@@ -21,7 +21,6 @@ class MeetupDirectory extends Component
     public $latest;
     public $earliest;
     public $mineOnly;
-    public $organiserName;
     public $meetupOrganisers;
     public $isGoing;
 
@@ -33,7 +32,6 @@ class MeetupDirectory extends Component
      */
     public function mount()
     {
-        $this->mineOnly = false;
         $this->user = auth()->user();  
     }
 
@@ -70,7 +68,7 @@ class MeetupDirectory extends Component
     
         return $query->paginate(5);
     }
-        
+
     /**
      * Handle the user toggling their whether or not they're going
      */
