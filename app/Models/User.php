@@ -57,7 +57,7 @@ class User extends Authenticatable
      */
     public function meetups(): BelongsToMany
     {
-        return $this->belongsToMany(Meetup::class, 'user_meetups', 'user_id', 'meetup_id');
+        return $this->belongsToMany(Meetup::class, 'user_meetups', 'user_id', 'meetup_id')->withPivot('role');
     }
 
     /**
