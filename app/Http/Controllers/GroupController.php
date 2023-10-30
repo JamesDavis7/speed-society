@@ -15,7 +15,6 @@ class GroupController extends Controller
     {
         return view('pages.groups.index');
     }
-    
         
     /**
      * Display the users personal groups

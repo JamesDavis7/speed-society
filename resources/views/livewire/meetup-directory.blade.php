@@ -57,7 +57,7 @@
                     @endforeach
                 </p>
                 <p><span class="font-semibold">Location:</span> {{ $meetup->location }}</p>
-                <p><span class="font-semibold">Category:</span> {{  trans('enums.meetup_category.' . $meetup->category)}}</p>
+                <p><span class="font-semibold">Category:</span> {{ trans('enums.meetup_category.' . $meetup->category)}}</p>
                 <p><span class="font-semibold">Participants:</span> {{ count($meetup->users->where('pivot.role', 'participant')) }}</p>
                 <div class="mt-4">
                     <x-button 

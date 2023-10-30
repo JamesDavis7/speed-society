@@ -45,7 +45,7 @@
                     </p>
                     <p><span class="font-semibold">Location:</span> {{ $meetup->location }}</p>
                     <p><span class="font-semibold">Category:</span> {{  trans('enums.meetup_category.' . $meetup->category)}}</p>
-                    <p><span class="font-semibold">Participants:</span> {{ count($meetup->users)}}</p>
+                    <p><span class="font-semibold">Participants:</span> {{ count($meetup->users->where('pivot.role', 'participant'))}}</p>
                 </div>
                 @can('edit', $meetup)
                     <x-button href="{{ route('meetups.edit', ['id' => $meetup->id])}}">Manage Meetup</x-button>

@@ -14,5 +14,4 @@ class MeetupPolicy
     {
         return $user->id === $meetup->pivot->user_id && $meetup->pivot->role === 'organiser';
     }
-    
 }

@@ -3,7 +3,7 @@
 use Illuminate\Support\Carbon;
 
 /**
- * Nicely format date/time.
+ * Nicely formats date/time.
  */
 if (!function_exists('formatDateTime')) {
     function formatDateTime($dateTime, $format = 'F j, Y g:i A')
