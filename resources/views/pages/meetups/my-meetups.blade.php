@@ -50,6 +50,7 @@
                 @can('edit', $meetup)
                     <x-button href="{{ route('meetups.edit', ['id' => $meetup->id])}}">Manage Meetup</x-button>
                 @endcan
+                <x-button>I'm not going</x-button>
             </x-directory-card>
         @endforeach
     @else

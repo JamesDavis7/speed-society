@@ -7,7 +7,6 @@ use Livewire\Component;
 use Livewire\WithPagination;
 use App\Models\Meetup;
 use App\Models\User;
-use Illuminate\Support\Facades\Auth;
 
 class MeetupDirectory extends Component
 {
