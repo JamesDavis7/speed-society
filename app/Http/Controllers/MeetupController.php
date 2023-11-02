@@ -101,4 +101,17 @@ class MeetupController extends Controller
 
         return redirect()->route('meetups.my-meetups');    
     }
+
+    /**
+     * Detaches the user from the meetup.
+     */
+    public function notGoing($id)
+    {
+        $relatedUser = User::find(Auth::id());
+        $relatedUser->meetups()->detach($id);
+
+        session()->flash('meetupSuccess', 'You have left the meetup');
+
+        return redirect()->route('meetups.my-meetups');    
+    }
 }

@@ -1,14 +1,16 @@
+
 @extends('layouts.main')
 
 @section('page_title', 'Meetups')
 
-@if(session('meetupSuccess'))
-<div class="w-full py-4 text-center bg-green-300">
-    <span class="text-xl font-light text-green-800">{{ session('meetupSuccess')}}</span>
-</div>
-@endif
 
 @section('content')
+
+@if(session('meetupSuccess'))
+    <div class="w-full py-4 text-center bg-green-300">
+        <span class="text-xl font-light text-green-800">{{ session('meetupSuccess')}}</span>
+    </div>
+@endif
 
 <div class="flex items-start w-full">
     <x-button href="{{ route('meetups.index') }}">Back</x-button>
@@ -18,7 +20,9 @@
     </div>
 </div>
 
-<div class="flex flex-col gap-8">
+<div class="flex flex-col gap-8" x-data="{
+    showModal: false
+}">
     <x-button variant="outline" href="{{ route('meetups.create')}}">Create A Meetup</x-button>
     <div class="flex gap-2">
         <h1 class="text-4xl font-semibold">Meetups I'm</h1>
@@ -30,7 +34,7 @@
 
     @if(count($userMeetups) > 0 )
         @foreach($userMeetups as $meetup)
-            <x-directory-card 
+            <x-directory-card
                 id="{{ $meetup->id }}"
                 title="{{ $meetup->title }}"
                 description="{{ $meetup->description }}"
@@ -50,14 +54,32 @@
                 @can('edit', $meetup)
                     <x-button href="{{ route('meetups.edit', ['id' => $meetup->id])}}">Manage Meetup</x-button>
                 @endcan
-                <x-button>I'm not going</x-button>
+                @cannot('edit', $meetup) 
+                    <x-button x-on:click="showModal = true;">I'm not going</x-button>
+                @endcannot
+
+                <x-modal show="showModal" title="Are you sure?">
+                    <h1 class="pb-4">You will no longer be a participant of this meetup and it will be removed from your personal directory.</h1>
+                    <div class="flex items-center w-full gap-2">
+                        <x-button type="submit" class="flex justify-center w-full" x-on:click="showModal = false;">No, cancel</x-button>
+                        <div>
+                            <form action="{{ route('meetups.not-going', $meetup->id) }}" method="POST">
+                                @csrf
+                                @method('put')
+                                <x-button type="submit" variant="danger" class="flex justify-center">Yes, I'm sure</x-button>
+                            </form>
+                        </div>
+                    </div>
+                </x-modal>
             </x-directory-card>
         @endforeach
     @else
-    <div class="flex justify-center">
-        <h1 class="text-2xl">Nothing here yet!</h1>
-    </div>
+        <div class="flex justify-center">
+            <h1 class="text-2xl">Nothing here yet!</h1>
+        </div>
     @endif
+
+    
 </div>
 
 @endsection

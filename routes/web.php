@@ -30,7 +30,7 @@ Route::middleware('auth')->group(function () {
         Route::put('/update/{id}', [MeetupController::class, 'update'])->name('meetups.update');
         Route::delete('/{id}', [MeetupController::class, 'destroy'])->name('meetups.destroy');
         Route::get('/my-meetups', [MeetupController::class, 'myMeetups'])->name('meetups.my-meetups');
-        Route::put('show-interest/{id}', [MeetupController::class, 'showInterest'])->name('meetups.show-interest');
+        Route::put('/not-going/{id}', [MeetupController::class, 'notGoing'])->name('meetups.not-going');
     });
 
     Route::prefix('/groups')->group(function() {
