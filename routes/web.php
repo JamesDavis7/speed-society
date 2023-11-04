@@ -31,6 +31,7 @@ Route::middleware('auth')->group(function () {
         Route::delete('/{id}', [MeetupController::class, 'destroy'])->name('meetups.destroy');
         Route::get('/my-meetups', [MeetupController::class, 'myMeetups'])->name('meetups.my-meetups');
         Route::put('/not-going/{id}', [MeetupController::class, 'notGoing'])->name('meetups.not-going');
+        Route::get('/filter-meetups', [MeetupController::class, 'filter'])->name('meetups.filter');
     });
 
     Route::prefix('/groups')->group(function() {
@@ -39,8 +40,5 @@ Route::middleware('auth')->group(function () {
     });
 
 });
-
-
-
 
 require __DIR__.'/auth.php';

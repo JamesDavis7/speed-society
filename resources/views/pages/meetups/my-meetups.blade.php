@@ -16,21 +16,14 @@
     <x-button href="{{ route('meetups.index') }}">Back</x-button>
     <div class="flex flex-col items-center justify-center mx-auto">
         <h1 class="text-5xl font-light">My Meetups</h1>
-        <p class="text-gray-500">Your personal meetups directory</p>
+        <p class="text-gray-500">Your favourite meetups and created meetups will appear here</p>
     </div>
 </div>
 
 <div class="flex flex-col gap-8" x-data="{
-    showModal: false
+    showModal: true
 }">
     <x-button variant="outline" href="{{ route('meetups.create')}}">Create A Meetup</x-button>
-    <div class="flex gap-2">
-        <h1 class="text-4xl font-semibold">Meetups I'm</h1>
-        <select name="group-filter">
-            <option value="goingTo" wire:model.live="goingTo">Going To</option>
-            <option value="organising" wire:model.live="organising">Organising</option>
-        </select>
-    </div>
 
     @if(count($userMeetups) > 0 )
         @foreach($userMeetups as $meetup)
@@ -61,8 +54,8 @@
                 <x-modal show="showModal" title="Are you sure?">
                     <h1 class="pb-4">You will no longer be a participant of this meetup and it will be removed from your personal directory.</h1>
                     <div class="flex items-center w-full gap-2">
-                        <x-button type="submit" class="flex justify-center w-full" x-on:click="showModal = false;">No, cancel</x-button>
-                        <div>
+                        <x-button type="submit" class="w-full"  x-on:click="showModal = false;">No, cancel</x-button>
+                        <div class="w-full">
                             <form action="{{ route('meetups.not-going', $meetup->id) }}" method="POST">
                                 @csrf
                                 @method('put')

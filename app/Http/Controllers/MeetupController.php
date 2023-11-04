@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Enums\MeetupCategoryEnum;
 use App\Models\Location;
 use App\Models\User;
+use Illuminate\Http\Request;
 
 class MeetupController extends Controller
 {
