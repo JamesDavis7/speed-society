@@ -21,7 +21,7 @@
 </div>
 
 <div class="flex flex-col gap-8" x-data="{
-    showModal: true
+    showModal: false
 }">
     <x-button variant="outline" href="{{ route('meetups.create')}}">Create A Meetup</x-button>
 
